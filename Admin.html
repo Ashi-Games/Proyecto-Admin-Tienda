@@ -63,11 +63,13 @@
                     </li>
                 </ul>
                                 
-                <div class="d-flex align-items-center gap-3">
-                    <a href="login.html" class="btn btn-outline-primary px-4">Iniciar sesión</a>                  
-                    <a href="#" class="btn btn-primary btn-cta">
-                        Solicitar cotización
-                    </a>
+                <div class="d-flex gap-3">
+                    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        Iniciar sesión
+                    </button>
+                    <button class="btn btn-primary btn-cta" data-bs-toggle="modal" data-bs-target="#registerModal">
+                        Registrarse
+                    </button>
                 </div>
             </div>
         </div>
@@ -110,6 +112,61 @@
         <div class="position-absolute bottom-0 start-50 translate-middle-x mb-5 text-center">
             <p class="small opacity-75 mb-2">Descubre más</p>
             <i class="bi bi-chevron-down fs-3 animate-bounce"></i>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE TABLA DE PLANES / PRECIOS -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Nuestros Planes</h2>
+                <p class="lead text-muted">Elige el plan que mejor se adapte a tu negocio</p>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table table-hover align-middle" id="planesTable">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Plan</th>
+                            <th>Precio Mensual</th>
+                            <th>Sitio Web</th>
+                            <th>Marketing Digital</th>
+                            <th>Soporte</th>
+                            <th>Almacenamiento</th>
+                            <th class="text-center">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Básico</strong></td>
+                            <td class="fw-semibold">$49</td>
+                            <td><i class="bi bi-check-circle-fill text-success"></i></td>
+                            <td><i class="bi bi-x-circle-fill text-danger"></i></td>
+                            <td>Soporte por email</td>
+                            <td>5 GB</td>
+                            <td class="text-center"><button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#registerModal">Elegir</button></td>
+                        </tr>
+                        <tr class="table-primary">
+                            <td><strong>Profesional</strong> <span class="badge bg-warning text-dark">Más popular</span></td>
+                            <td class="fw-semibold">$99</td>
+                            <td><i class="bi bi-check-circle-fill text-success"></i></td>
+                            <td><i class="bi bi-check-circle-fill text-success"></i> Básico</td>
+                            <td>Soporte prioritario</td>
+                            <td>50 GB</td>
+                            <td class="text-center"><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#registerModal">Elegir</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Empresarial</strong></td>
+                            <td class="fw-semibold">$199</td>
+                            <td><i class="bi bi-check-circle-fill text-success"></i></td>
+                            <td><i class="bi bi-check-circle-fill text-success"></i> Avanzado</td>
+                            <td>Soporte 24/7</td>
+                            <td>200 GB</td>
+                            <td class="text-center"><button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#registerModal">Elegir</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 
@@ -201,6 +258,133 @@
         </div>
     </footer>
 
+    <!-- ====================== MODALES ====================== -->
+
+   <!-- Modal de Inicio de Sesión -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="loginModalLabel">Iniciar Sesión</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label">Correo electrónico</label>
+                            <input type="email" id="loginEmail" class="form-control" placeholder="tu@email.com" required>
+                            <div class="invalid-feedback">Por favor ingresa un correo válido.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña</label>
+                            <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required minlength="6">
+                            <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres.</div>
+                        </div>
+                        <div class="d-flex justify-content-between mb-4">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="remember">
+                                <label class="form-check-label" for="remember">Recordarme</label>
+                            </div>
+                            <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#forgotModal" data-bs-dismiss="modal">
+                                ¿Olvidaste tu contraseña?
+                            </a>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-3">Ingresar</button>
+                    </form>
+                    
+                    <div class="text-center mt-4">
+                        <p>¿No tienes cuenta? 
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal" 
+                               class="text-primary fw-semibold">Regístrate aquí</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Registro -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="registerModalLabel">Crear Cuenta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="registerForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" id="regNombre" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Apellido</label>
+                                <input type="text" id="regApellido" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Correo electrónico</label>
+                            <input type="email" id="regEmail" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña</label>
+                            <input type="password" id="regPassword" class="form-control" required minlength="6">
+                            <div class="invalid-feedback">La contraseña debe tener mínimo 6 caracteres.</div>
+                        </div>
+                        <div class="form-check mb-4">
+                            <input type="checkbox" id="terms" class="form-check-input" required>
+                            <label class="form-check-label" for="terms">
+                                Acepto los <a href="#" class="text-primary">Términos y Condiciones</a>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-3">Crear cuenta</button>
+                    </form>
+                    
+                    <div class="text-center mt-4">
+                        <p>¿Ya tienes cuenta? 
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal" 
+                               class="text-primary fw-semibold">Inicia sesión</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nuevo Modal: Recuperar Contraseña -->
+    <div class="modal fade" id="forgotModal" tabindex="-1" aria-labelledby="forgotModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="forgotModalLabel">Recuperar Contraseña</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-muted mb-4">
+                        Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.
+                    </p>
+                    <form id="forgotForm">
+                        <div class="mb-4">
+                            <label class="form-label">Correo electrónico</label>
+                            <input type="email" id="forgotEmail" class="form-control" placeholder="tu@email.com" required>
+                            <div class="invalid-feedback">Por favor ingresa un correo válido.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-3">Enviar enlace de recuperación</button>
+                    </form>
+                    
+                    <div class="text-center mt-4">
+                        <p>¿Recordaste tu contraseña? 
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal" 
+                               class="text-primary fw-semibold">Volver a iniciar sesión</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="admin.js"></script>
 </body>
 </html>
