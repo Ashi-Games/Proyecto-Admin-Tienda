@@ -14,8 +14,6 @@
     <link rel="stylesheet" th:href="@{/Css/admin.css}">
 </head>
 <body>
-
-<body>
 <nav class="navbar navbar-expand-lg bg-white sticky-top">
         <div class="container">
             <a class="navbar-brand text-primary fw-bold fs-3" th:href="@{/}">StoreBuilder</a>
@@ -48,7 +46,18 @@
                     </li>
                 </ul>
                 
-                <div id="authButtons" class="d-flex gap-3 align-items-center"></div>
+                <div class="d-flex gap-3 align-items-center">
+                    <div th:if="${usuarioActual != null}">
+                        <span class="me-3 text-dark">
+                            Hola, <strong th:text="${usuarioActual.nombre}">Usuario</strong>
+                        </span>
+                        <a class="btn btn-outline-danger" th:href="@{/logout}">Cerrar Sesión</a>
+                    </div>
+                    <div th:unless="${usuarioActual != null}">
+                        <a class="btn btn-outline-primary" th:href="@{/login}">Iniciar sesión</a>
+                        <a class="btn btn-primary btn-cta" th:href="@{/register}">Registrarse</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -57,18 +66,24 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <h2 class="text-center mb-4">Contáctanos</h2>
-                <form>
+
+                <div th:if="${resultado}" class="alert alert-success" th:text="${resultado}"></div>
+
+                <form th:action="@{/contacto}" th:object="${contactForm}" method="post">
                     <div class="mb-3">
                         <label class="form-label">Nombre completo</label>
-                        <input type="text" class="form-control" required>
+                        <input type="text" class="form-control" th:field="*{nombre}" placeholder="Tu nombre" />
+                        <div th:if="${#fields.hasErrors('nombre')}" class="text-danger small" th:errors="*{nombre}"></div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Correo electrónico</label>
-                        <input type="email" class="form-control" required>
+                        <input type="email" class="form-control" th:field="*{correo}" placeholder="correo@ejemplo.com" />
+                        <div th:if="${#fields.hasErrors('correo')}" class="text-danger small" th:errors="*{correo}"></div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Mensaje</label>
-                        <textarea class="form-control" rows="6" required></textarea>
+                        <textarea class="form-control" rows="6" th:field="*{mensaje}" placeholder="Escribe tu mensaje"></textarea>
+                        <div th:if="${#fields.hasErrors('mensaje')}" class="text-danger small" th:errors="*{mensaje}"></div>
                     </div>
                     <button type="submit" class="btn btn-primary w-100 py-3">Enviar mensaje</button>
                 </form>
@@ -151,6 +166,5 @@
 </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-   <script th:src="@{/Js/admin.js}"></script>
 </body>
 </html>
